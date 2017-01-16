@@ -1,0 +1,36 @@
+<div class="login">
+	<div class="login_wrapper">
+		<div class="animate form login_form">
+			<section class="login_content">
+				<form name="loginForm" novalidate>
+					<h1>Login Form</h1>
+					<div>
+						<input type="text" class="form-control" placeholder="Username" ng-model="authCtrl.userCredentials.username" required/>
+					</div>
+					<div>
+						<input type="password" class="form-control" placeholder="Password" ng-model="authCtrl.userCredentials.password" required/>
+					</div>
+					<div>
+						<a class="btn btn-default submit" ng-click="authCtrl.login(authCtrl.userCredentials, loginForm)" ng-class="{'disabled':!(loginForm.$dirty && loginForm.$valid)}">Log in</a>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div class="separator">
+						<p class="change_link">New to site?
+							<a ui-sref="register" class="to_register"> Create Account </a>
+						</p>
+
+						<div class="clearfix"></div>
+						<br/>
+
+						<div>
+							<h1><i class="fa fa-paw"></i> Smart House</h1>
+							<p>©2016 All Rights Reserved. Smart House is a web interface to monitor and control devices from your house. Privacy and Terms</p>
+						</div>
+					</div>
+				</form>
+			</section>
+		</div>
+	</div>
+</div>

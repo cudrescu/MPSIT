@@ -1,0 +1,165 @@
+<div class="right_col" role="main">
+	<div class="row" style="background-image: url('../../../resources/img/bg.jpg');">
+		<div class="col-md-6">
+			<uib-accordion close-others="oneAtATime">
+
+				<div uib-accordion-group class="panel-default" is-open=true>
+					<uib-accordion-heading>
+						<i class="fa fa-thermometer-half" aria-hidden="true"></i>
+						Thermostat
+						<span class="pull-right"> {{devicesCtrl.devices['thermostat'].currentTemperature}} °C</span>
+					</uib-accordion-heading>
+					<h5>Adjust temperature:  {{devicesCtrl.devices['thermostat'].desiredTemperature}} °C</h5>
+
+					<div class="display-flex">
+						<i class="fa fa-snowflake-o left-icon" aria-hidden="true"></i>
+						<input type="range" name="points" min="0" max="50" ng-model="devicesCtrl.devices['thermostat'].desiredTemperature" ng-change="devicesCtrl.updateTemperature()"/>
+						<i class="fa fa-sun-o right-icon" aria-hidden="true"></i>
+					</div>
+
+					<div class="display-flex">
+						<h5>Device status: </h5>
+						<form style="margin-left: 10px;">
+							<switch id="enabled" name="enabled" ng-model="devicesCtrl.devices['thermostat'].status" on="On" off="Off" class="green"></switch>
+						</form>
+					</div>
+
+				</div>
+
+				<div uib-accordion-group class="panel-default" is-open=true>
+					<uib-accordion-heading>
+						<i class="fa fa-fire" aria-hidden="true"></i>
+						Smoke detector
+						<span class="pull-right text-success" ng-show="devicesCtrl.devices['smokeDetector'].status">Online</span>
+						<span class="pull-right text-danger" ng-show="!devicesCtrl.devices['smokeDetector'].status">Offline</span>
+					</uib-accordion-heading>
+					<div class="display-flex">
+						<h5>Device status: </h5>
+						<form style="margin-left: 10px;">
+							<switch id="enabled" name="enabled" ng-model="devicesCtrl.devices['smokeDetector'].status" on="On" off="Off" class="green" ng-change="devicesCtrl.updateDeviceStatus(devicesCtrl.devices['smokeDetector'])"></switch>
+						</form>
+					</div>
+				</div>
+
+				<div uib-accordion-group class="panel-default" is-open=true>
+					<uib-accordion-heading>
+						<i class="fa fa-lock" aria-hidden="true"></i>
+						House Security
+						<span class="pull-right text-success" ng-show="devicesCtrl.devices['houseSecurity'].status">Armed</span>
+						<span class="pull-right text-danger" ng-show="!devicesCtrl.devices['houseSecurity'].status">Unarmed</span>
+					</uib-accordion-heading>
+					<div class="display-flex">
+						<h5>Arm Security: </h5>
+						<form style="margin-left: 10px;">
+							<switch id="enabled" name="enabled" ng-model="devicesCtrl.devices['houseSecurity'].status" on="On" off="Off" class="green" ng-change="devicesCtrl.updateDeviceStatus(devicesCtrl.devices['houseSecurity'])"></switch>
+						</form>
+					</div>
+				</div>
+
+				<div uib-accordion-group class="panel-default" is-open=true>
+					<uib-accordion-heading>
+						<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						Lights
+						<span class="pull-right text-info">Idle</span>
+					</uib-accordion-heading>
+					<h5>Room 1 Light intensity: {{devicesCtrl.devices['lights'].roomLightIntensity[0]}} % </h5>
+					<div class="display-flex">
+						<i class="fa fa-lightbulb-o left-icon" aria-hidden="true"></i>
+						<input type="range" name="points" min="0" max="100" ng-model="devicesCtrl.devices['lights'].roomLightIntensity[0]" ng-change="devicesCtrl.updateLights()"/>
+						<i class="fa fa-lightbulb-o right-icon" aria-hidden="true"></i>
+					</div>
+					<h5>Room 2 Light intensity: {{devicesCtrl.devices['lights'].roomLightIntensity[1]}} %</h5>
+					<div class="display-flex">
+						<i class="fa fa-lightbulb-o left-icon" aria-hidden="true"></i>
+						<input type="range" name="points" min="0" max="100" ng-model="devicesCtrl.devices['lights'].roomLightIntensity[1]" ng-change="devicesCtrl.updateLights()"/>
+						<i class="fa fa-lightbulb-o right-icon" aria-hidden="true"></i>
+					</div>
+					<h5>Lawn Light intensity: {{devicesCtrl.devices['lights'].lawnLightIntensity}} %</h5>
+					<div class="display-flex">
+						<i class="fa fa-lightbulb-o left-icon" aria-hidden="true"></i>
+						<input type="range" name="points" min="0" max="100" ng-model="devicesCtrl.devices['lights'].lawnLightIntensity" ng-change="devicesCtrl.updateLights()"/>
+						<i class="fa fa-lightbulb-o right-icon" aria-hidden="true"></i>
+					</div>
+					<div class="display-flex">
+						<h5>Turn off all lights: </h5>
+						<form style="margin-left: 10px;">
+							<switch id="enabled" name="enabled" ng-model="devicesCtrl.devices['lights'].status" class="green" ng-change="devicesCtrl.updateLights()"></switch>
+						</form>
+					</div>
+				</div>
+
+			</uib-accordion>
+
+		</div>
+
+		<div class="col-md-6">
+			<uib-accordion close-others="oneAtATime">
+
+				<div uib-accordion-group class="panel-default" is-open=true>
+					<uib-accordion-heading>
+						<i class="fa fa-windows" aria-hidden="true"></i>
+						Desktop PC
+						<span class="pull-right text-success">Online</span>
+					</uib-accordion-heading>
+					<div class="display-flex">
+						<h5>Device status: </h5>
+						<form style="margin-left: 10px;">
+							<switch id="enabled" name="enabled" ng-model="devicesCtrl.devices['desktopPC'].status" on="On" off="Off" class="green" ng-change="devicesCtrl.updateDeviceStatus(devicesCtrl.devices['desktopPC'])"></switch>
+						</form>
+					</div>
+				</div>
+
+				<div uib-accordion-group class="panel-default" is-open=true>
+					<uib-accordion-heading>
+						<i class="fa fa-coffee" aria-hidden="true"></i>
+						Coffee machine
+						<span class="pull-right text-success">Finished</span>
+					</uib-accordion-heading>
+					<form name="cofeeMachineForm">
+						<div class="form-group col-md-12">
+							<label>Select brewing time:</label>
+							<div uib-timepicker ng-model="devicesCtrl.devices['coffeeMachine'].brewingTime" hour-step="1" minute-step="5" show-meridian="false"></div>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Select Coffee Type:</label>
+							<select name="singleSelect" class="form-control" ng-init="devicesCtrl.coffeeOptions[0]" ng-model="devicesCtrl.selectedCoffeeType">
+								<option ng-repeat="option in devicesCtrl.coffeeOptions">{{option}}</option>
+							</select>
+						</div>
+						<div class="col-md-12">
+							<button class="btn btn-default" ng-click="devicesCtrl.startMakingCoffee()">Start brewing</button>
+						</div>
+					</form>
+				</div>
+
+				<div uib-accordion-group class="panel-default" is-open=true>
+					<uib-accordion-heading>
+						<i class="fa fa-car" aria-hidden="true"></i>
+						Garage
+						<span class="pull-right text-info">{{devicesCtrl.devices['garage'].door}}</span>
+					</uib-accordion-heading>
+					<button class="btn btn-default" ng-click="devicesCtrl.changeGarageDoorStatus('opened')">Open doors</button>
+					<button class="btn btn-default" ng-click="devicesCtrl.changeGarageDoorStatus('closed')">Close doors</button>
+					<button class="btn btn-default" ng-click="devicesCtrl.changeGarageDoorStatus('locked')">Lock doors</button>
+				</div>
+
+				<div uib-accordion-group class="panel-default" is-open=true>
+					<uib-accordion-heading>
+						<i class="fa fa-cog" aria-hidden="true"></i>
+						Fan
+						<span class="pull-right text-success" ng-show="devicesCtrl.devices['fan'].status">Working</span>
+						<span class="pull-right text-danger" ng-show="!devicesCtrl.devices['fan'].status">Idle</span>
+					</uib-accordion-heading>
+					<div class="display-flex">
+						<h5>Device status: </h5>
+						<form style="margin-left: 10px;">
+							<switch id="enabled" name="enabled" ng-model="devicesCtrl.devices['fan'].status" on="On" off="Off" class="green" ng-change="devicesCtrl.updateDeviceStatus(devicesCtrl.devices['fan'])"></switch>
+						</form>
+					</div>
+				</div>
+
+			</uib-accordion>
+
+		</div>
+	</div>
+</div>
